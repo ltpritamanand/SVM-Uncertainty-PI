@@ -1,0 +1,24 @@
+{
+  "CQR-NN": {
+    "hidden_dim": 128,
+    "epochs": 300,
+    "learning_rate": 0.05,
+    "batch_size": 128
+  },
+  "QRF+CP": {
+    "n_estimators": 150,
+    "min_samples_leaf": 1
+  },
+  "XGB+CP": {
+    "n_estimators": 500,
+    "max_depth": 3,
+    "learning_rate": 0.1,
+    "subsample": 1.0
+  },
+  "SVQR+CP": {
+    "gamma_exp": -5,
+    "C_exp": 12,
+    "gamma": 0.03125,
+    "C": 4096.0
+  }
+}

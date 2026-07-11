@@ -1,0 +1,2 @@
+model,config,sum_rmse_val,sum_rmse_test,sigma_opt_val,sigma_opt_test,sigma_in_val,sigma_in_test,picp_val,picp_test,mpiw_val,mpiw_test
+LPSVM,"{""gamma"": 5.656854249492381, ""C"": 2.0, ""c3"": 1}",0.2345,0.228,0.0,0.0,0.2456,0.2624,0.76,0.8183,1.5624,1.6053

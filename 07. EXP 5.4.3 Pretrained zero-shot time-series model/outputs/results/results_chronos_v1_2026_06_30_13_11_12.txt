@@ -1,0 +1,57 @@
+======================================================================
+  Amprion -- Chronos v1 Zero-Shot (exp11, updated protocol)
+======================================================================
+
+Experiment Configuration
+--------------------------------------------------
+  Model           : amazon/chronos-t5-small
+  Context Length  : 24 (matches window size)
+  Pred Length     : 64 (take 1st = 1-step-ahead)
+  Num Samples     : 200
+  Training        : NONE (zero-shot)
+  Window          : 24
+  Quantiles       : tau = 0.05 / 0.95
+  Target Coverage : 0.9
+  Data Size       : 4000 (context: 3000, test: 1000)
+
+Chronos v1 Architecture Notes
+--------------------------------------------------
+  Chronos v1 is a GENERATIVE autoregressive model (T5-based).
+  It generates num_samples stochastic trajectories by sampling
+  from a categorical distribution over bins at each step.
+  Quantiles are extracted from the empirical sample distribution.
+  The PI width reflects the model's true predictive uncertainty.
+
+Protocol: sliding window, 1-step-ahead from 64-step forecast
+  Context = 24 points (matches window size of all other models).
+  Predict 64 steps, take 1st prediction only.
+  Slide by 1 step, repeat for all test points.
+  sigma2_model = 0 (zero-shot, no training randomness).
+
+Performance Summary
+----------------------------------------------------------------------
+  Test PICP   : 0.8230  (mean-PI over 10 seeds)
+  Test MPIW   : 22.6351
+  MPIW/PICP   : 27.5031
+  Inference   : 503.0s/seed
+  n_test      : 1000
+  N_init_seeds: 10
+  sigma2_opt  : 28.757347
+  sigma_opt   : 5.362588
+  sigma2_in   : 0.0  (zero-shot — no training-data variation)
+  sigma2_model: 28.757347
+
+Per-seed PICP / MPIW
+----------------------------------------
+  seed  0: PICP=0.8110  MPIW=22.6208
+  seed  1: PICP=0.8130  MPIW=22.7847
+  seed  2: PICP=0.8110  MPIW=22.7646
+  seed  3: PICP=0.8230  MPIW=22.4557
+  seed  4: PICP=0.8230  MPIW=22.6788
+  seed  5: PICP=0.8110  MPIW=22.3847
+  seed  6: PICP=0.8170  MPIW=22.6732
+  seed  7: PICP=0.8190  MPIW=22.8002
+  seed  8: PICP=0.8200  MPIW=22.4958
+  seed  9: PICP=0.8130  MPIW=22.6924
+
+Timestamp: 2026-06-30 13:11:12.099980

@@ -1,0 +1,13 @@
+sum_rmse_val,sum_rmse_test,interval_score_val,interval_score_test,sigma_opt_val,sigma_opt_test,picp_test,mpiw_test,elapsed_min,family,axis_key,axis_value,axis_label,folder,config_label
+0.4721,0.4754,2.9034,2.5809,0.0,0.0,0.9067,2.2773,0.01,XGB-1sub,n_estimators,50,Number of estimators,xgb_1sub,XGB-1sub_n_estimators=50
+0.4026,0.4124,2.865,2.5248,0.0,0.0,0.8817,2.0731,0.01,XGB-1sub,n_estimators,100,Number of estimators,xgb_1sub,XGB-1sub_n_estimators=100
+0.3087,0.3233,2.6695,2.3591,0.0,0.0,0.86,1.8625,0.02,XGB-1sub,n_estimators,200,Number of estimators,xgb_1sub,XGB-1sub_n_estimators=200
+0.3082,0.3229,2.666,2.3571,0.0,0.0,0.86,1.8578,0.03,XGB-1sub,n_estimators,300,Number of estimators,xgb_1sub,XGB-1sub_n_estimators=300
+0.3082,0.3229,2.666,2.3571,0.0,0.0,0.86,1.8578,0.04,XGB-1sub,n_estimators,500,Number of estimators,xgb_1sub,XGB-1sub_n_estimators=500
+0.5026,0.5192,2.9623,2.662,0.0,0.0,0.9083,2.2952,0.02,XGB-1sub,max_depth,1,Max depth,xgb_1sub,XGB-1sub_max_depth=1
+0.3082,0.3229,2.666,2.3571,0.0,0.0,0.86,1.8578,0.03,XGB-1sub,max_depth,2,Max depth,xgb_1sub,XGB-1sub_max_depth=2
+0.3875,0.3962,3.4902,2.8075,0.0,0.0,0.815,1.7786,0.03,XGB-1sub,max_depth,3,Max depth,xgb_1sub,XGB-1sub_max_depth=3
+0.3873,0.396,3.4904,2.8072,0.0,0.0,0.815,1.7777,0.03,XGB-1sub,max_depth,4,Max depth,xgb_1sub,XGB-1sub_max_depth=4
+0.3873,0.396,3.4904,2.8073,0.0,0.0,0.815,1.7777,0.04,XGB-1sub,max_depth,5,Max depth,xgb_1sub,XGB-1sub_max_depth=5
+0.3873,0.396,3.4904,2.8073,0.0,0.0,0.815,1.7777,0.04,XGB-1sub,max_depth,7,Max depth,xgb_1sub,XGB-1sub_max_depth=7
+0.3873,0.396,3.4904,2.8073,0.0,0.0,0.815,1.7777,0.03,XGB-1sub,max_depth,10,Max depth,xgb_1sub,XGB-1sub_max_depth=10

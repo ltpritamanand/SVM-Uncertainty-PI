@@ -1,0 +1,27 @@
+============================================================
+  LP-SVM (Sparse SVQR) — Stage 3 Results
+============================================================
+
+Config
+----------------------------------------
+  gamma         : 5.656854249492381
+  C             : 2.0
+  c3 (L1 coeff) : 1
+  q_lower/upper : 0.05 / 0.95
+  D (data seeds): 10
+  I (init seeds): 1
+
+Metrics
+----------------------------------------
+  Metric                   Val        Test
+  ----------------------------------------
+  sum_rmse              0.2345      0.2280
+  sigma_opt             0.0000      0.0000
+  sigma_in              0.2456      0.2624
+  picp                  0.7600      0.8183
+  mpiw                  1.5624      1.6053
+
+  sigma_opt = 0 because LP solver is deterministic.
+  sigma_in  = variance across 10 data seeds.
+
+Timestamp: 2026-06-27 12:45:55.677384

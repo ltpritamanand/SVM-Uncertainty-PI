@@ -1,0 +1,68 @@
+Previous model hyperparameters (before exp8 tuning update)
+===========================================================
+Source: hardcoded defaults in (NN)vs(QRF)vs(SVM.py
+       + results/hyperparam_tuning/best_hyperparams_2026_06_19_16_15_22.json
+
+Seed          : 58
+Data draw     : rng.choice(pool, size=50)  (only 50 train, no val draw)
+SumRMSE eval  : 400-point regular grid
+
+NN
+--
+  hidden_sizes : [128]
+  lr           : 3e-3
+  epochs       : 300
+  batch_size   : 256
+  dropout      : 0.0
+  weight_decay : 0.0
+
+SVM (SVQR)
+----------
+  gamma : 1.0
+  C     : 10.0
+
+QRF
+---
+  n_estimators     : 30
+  min_samples_leaf : 5
+  max_features     : sqrt
+
+XGB
+---
+  n_estimators     : 200
+  max_depth        : 2
+  learning_rate    : 0.05
+  subsample        : 0.8
+  colsample_bytree : 0.8
+  min_child_weight : 3
+  reg_lambda       : 2.0
+
+GPR
+---
+  length_scale : 0.707
+  alpha        : 0.5
+
+Updated to (from exp8 best_hyperparams_2026_06_22_11_58_38.json)
+=================================================================
+
+Seed          : 2  (matches exp8 TUNE_SEED)
+Data draw     : rng.choice(pool, size=100), use first 50 as train (matches exp8 stage-1)
+SumRMSE eval  : 600 test points (matches exp8 protocol)
+
+NN
+--
+  hidden_sizes : [512]
+  lr           : 3e-3       (unchanged)
+  epochs       : 100
+  batch_size   : 32
+  dropout      : 0.0        (unchanged)
+  weight_decay : 0.0        (unchanged)
+
+SVM (SVQR)
+----------
+  gamma : 0.7071067811865476
+  C     : 11.313708498984761
+
+QRF  — unchanged
+XGB  — unchanged
+GPR  — unchanged

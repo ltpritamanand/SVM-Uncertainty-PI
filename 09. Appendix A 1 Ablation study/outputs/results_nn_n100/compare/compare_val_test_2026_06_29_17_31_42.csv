@@ -1,0 +1,2 @@
+sum_rmse_val,sum_rmse_test,interval_score_val,interval_score_test,sigma_opt_val,sigma_opt_test,picp_test,mpiw_test,elapsed_min,model,config
+0.115,0.1174,2.0774,1.9839,0.1777,0.1685,0.9017,1.7941,0.53,NN,"{""hidden_sizes"": [256], ""lr"": 0.003, ""epochs"": 200, ""batch_size"": 32}"

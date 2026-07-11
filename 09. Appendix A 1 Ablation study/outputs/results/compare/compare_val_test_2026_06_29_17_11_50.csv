@@ -1,0 +1,8 @@
+sum_rmse_val,sum_rmse_test,interval_score_val,interval_score_test,sigma_opt_val,sigma_opt_test,picp_test,mpiw_test,elapsed_min,model,config
+0.1086,0.1134,2.2986,1.9993,0.1601,0.1552,0.8817,1.7391,0.07,NN,"{""hidden_sizes"": [512], ""lr"": 0.003, ""epochs"": 100, ""batch_size"": 32}"
+0.2043,0.1925,2.4396,2.2007,0.0965,0.0998,0.825,1.6258,0.04,QRF,"{""n_estimators"": 50, ""min_samples_leaf"": 2, ""max_features"": ""sqrt""}"
+0.1285,0.1378,2.3222,2.0731,0.0,0.0,0.865,1.6692,0.0,SVM,"{""gamma"": 0.7071067811865476, ""C"": 11.313708498984761}"
+0.2339,0.2552,2.6291,2.2555,0.1474,0.136,0.8033,1.6188,0.02,XGB,"{""max_depth"": 2, ""n_estimators"": 200, ""learning_rate"": 0.05, ""subsample"": 0.8}"
+0.3082,0.3229,2.666,2.3571,0.0,0.0,0.86,1.8578,0.0,XGB-1sub,"{""max_depth"": 2, ""n_estimators"": 300, ""learning_rate"": 0.05, ""subsample"": 1.0}"
+0.158,0.1454,2.262,2.03,0.0,0.0,0.9267,1.8856,0.0,GPR,"{""length_scale"": 0.707, ""alpha"": 0.5}"
+0.2089,0.1979,2.5401,2.1913,0.0,0.0,0.865,1.7682,0.03,NGB,"{""n_estimators"": 300, ""learning_rate"": 0.01, ""max_depth"": 2, ""min_samples_leaf"": 10}"

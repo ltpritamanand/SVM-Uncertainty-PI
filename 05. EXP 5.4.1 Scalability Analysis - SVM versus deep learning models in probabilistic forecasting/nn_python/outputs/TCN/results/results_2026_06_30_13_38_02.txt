@@ -1,0 +1,49 @@
+=================================================================
+  Amprion Quantile TCN - Sliding Test Set Results
+=================================================================
+
+Experiment Configuration
+---------------------------------------------
+Model             : TCN
+Window Size       : 24
+Quantile Lower    : 0.05
+Quantile Upper    : 0.95
+Target Coverage   : 0.9
+Training Epochs   : 50
+Runs per Size     : 10
+Tuning Subset     : 1000 points
+Device            : cuda
+
+Best Hyperparameters (from Stage-1)
+---------------------------------------------
+Hidden Size : 64
+LR          : 1e-02
+Batch Size  : 32
+Tune PICP   : 0.912821
+Tune MPIW   : 12.954275
+
+Performance Summary (mean ± std over 10 runs)
+--------------------------------------------------------------------------------------------------------------------------------------------
+    Size      Val PICP      Val MPIW     Test PICP     Test MPIW     MPIW/PICP    Time (s)    sigma2_raw   sigma2_var_norm   sigma2_range_norm
+--------------------------------------------------------------------------------------------------------------------------------------------
+    4000  0.8554±0.0250  24.1879±1.2857  0.9215±0.0145  25.5698±1.1035       27.7469  21.54±0.09       41.4482          0.008612            0.000383
+    6000  0.9345±0.0322  21.8421±1.9478  0.9228±0.0299  37.3185±4.9475       40.4418  38.53±3.33       42.0644          0.005328            0.000272
+    8000  0.9235±0.0134  31.5548±2.1480  0.9065±0.0271  26.7723±1.8671       29.5349  40.21±10.25        7.9661          0.000530            0.000038
+   10000  0.9487±0.0186  39.9228±3.7336  0.9402±0.0139  30.8216±2.2090       32.7818  37.81±0.31       13.5549          0.001213            0.000086
+   12000  0.9494±0.0124  21.9610±1.5578  0.9415±0.0177  16.7233±1.6005       17.7617  46.06±0.08        4.6630          0.000789            0.000043
+   16000  0.9222±0.0202  16.1363±0.8535  0.9302±0.0210  16.3667±0.8057       17.5957  62.84±0.12        3.0605          0.000628            0.000035
+
+Protocol: SLIDING test set — for each size N, last 1k samples = test, rest = train+val.
+Test set changes with data size (e.g., 4k→3k+1k, 6k→5k+1k, etc.).
+Notes on sigma2 variants:
+  sigma2_raw          : mean per-point variance across 10 runs (original y-units²).
+  sigma2_var_norm     : sigma2_raw / var(y_test). Model instability relative
+                        to how much the test data itself varies. < 1 → model
+                        variance is smaller than data variance — good.
+  sigma2_range_norm   : sigma2_raw / range(y_test)². Similar but uses full
+                        spread; more sensitive to outliers in the test set.
+  Both normalised variants use the specific test-set statistics for each
+  data size, making them fair for the sliding test-set protocol.
+
+Execution completed.
+Timestamp: 2026-06-30 13:38:02.884411

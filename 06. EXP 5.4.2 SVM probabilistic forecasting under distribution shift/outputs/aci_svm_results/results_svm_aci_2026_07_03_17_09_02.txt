@@ -1,0 +1,33 @@
+========== Amprion SVM + ACI Results ==========
+
+Experiment Protocol: Distribution Shift (ACI)
+--------------------------------------------------
+Training set  : first 5000 samples (indices 1–5000)
+Test set      : next  10000 samples (indices 5001–15000)
+ACI cal window: 500
+Alpha         : 0.100
+Gamma         : 0.0010
+
+Hyperparameters (from prior tuning, no re-tuning)
+--------------------------------------------------
+Window Size : 24
+s           : 2^20 = 1.048576e+06
+C           : 2^16 = 6.553600e+04
+
+Performance Summary
+--------------------------------------------------------------------------------
+Method       PICP       MPIW       LPICE      Accuracy  
+--------------------------------------------------------------------------------
+SVM(raw)     0.888020   21.5319    0.107965   0.6094    
+SVM+ACI      0.899148   24.5683    0.096113   0.6311    
+--------------------------------------------------------------------------------
+
+Timing
+--------------------------------------------------
+  Training (2 models) : 115.75 s
+  Batch prediction    : 0.34 s
+  ACI loop            : 0.14 s
+  Total               : 116.23 s
+
+Execution completed successfully.
+Timestamp : 03-Jul-2026 17:09:02

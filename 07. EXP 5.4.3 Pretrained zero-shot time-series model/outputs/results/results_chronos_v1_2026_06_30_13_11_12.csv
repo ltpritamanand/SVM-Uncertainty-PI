@@ -1,0 +1,2 @@
+data_size,test_picp,test_mpiw,mpiw_picp_ratio,inference_time_s,n_test,n_init_seeds,sigma2_opt,sigma_opt,sigma2_in,sigma2_model
+4000,0.823,22.635086,27.503143,503.02,1000,10,28.75734702,5.36258772,0.0,28.75734702

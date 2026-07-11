@@ -1,0 +1,38 @@
+============================================================
+  Amprion LSTM + ACI Results
+============================================================
+
+Experiment Protocol: Distribution Shift (ACI)
+---------------------------------------------
+  Training set  : first 5000 samples (indices 0–4999)
+  Test set      : next  10000 samples (indices 5000–14999)
+  ACI cal window: 500
+  Alpha         : 0.1
+  Gamma         : 0.001
+
+Hyperparameters (from prior tuning, no re-tuning)
+---------------------------------------------
+  Hidden Size : 128
+  LR          : 1e-02
+  Batch Size  : 32
+  Window      : 24
+  Epochs      : 50
+  Seed        : 42
+
+Performance Summary
+----------------------------------------------------------------------
+Method                PICP        MPIW       LPICE    Accuracy
+----------------------------------------------------------------------
+LSTM (raw)        0.947769     36.2324    0.046307      0.8377
+LSTM+ACI          0.899749     32.9134    0.080903      0.6013
+----------------------------------------------------------------------
+
+Timing
+---------------------------------------------
+  Training (2 models) : 48.78s
+  Batch prediction    : 0.03s
+  ACI loop            : 0.46s
+  Total               : 49.42s
+
+Execution completed successfully.
+Timestamp: 2026-05-29 15:49:30.728780

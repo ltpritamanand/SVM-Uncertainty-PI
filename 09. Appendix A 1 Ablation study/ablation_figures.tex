@@ -1,0 +1,146 @@
+% =====================================================================
+% Ablation figures — Stage 2 results (val vs test overlays)
+% Generated for exp8_ablation_model_size
+%
+% Required preamble (add once near the top of your main .tex):
+%   \usepackage{graphicx}
+%   \usepackage{subcaption}
+%
+% Folder layout assumed at the project root (as uploaded):
+%   nn/        qrf/        xgb/        xgb_1sub/
+%
+% If you uploaded everything inside a parent folder (e.g. results/ or figs/),
+% add this ONE line above the figures and edit the path:
+%   \graphicspath{{results/}}
+% =====================================================================
+
+
+% ===================== NN ablation =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{nn/nn_hidden_sizes_w_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+    \label{fig:abl-nn-sr}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{nn/nn_hidden_sizes_w_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+    \label{fig:abl-nn-so}
+  \end{subfigure}
+  \caption{NN ablation over hidden width $h \in \{16, 32, 64, 128, 256, 512, 1024\}$,
+  averaged over $D = 10$ data seeds and $I = 10$ init seeds. Sum of RMSEs
+  falls monotonically, but parameter uncertainty $\sigma_{\mathrm{opt}}$ reaches
+  its minimum at $h \in [64, 128]$ and rises sharply for wider networks.}
+  \label{fig:abl-nn}
+\end{figure}
+
+
+% ===================== QRF ablation: number of trees =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{qrf/qrf_n_estimators_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{qrf/qrf_n_estimators_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+  \end{subfigure}
+  \caption{QRF ablation over number of trees,
+  $n_{\mathrm{est}} \in \{50, 100, 150, 200, 300, 500\}$,
+  with the other QRF hyperparameters fixed to their stage-1 best values.}
+  \label{fig:abl-qrf-nest}
+\end{figure}
+
+
+% ===================== QRF ablation: min samples per leaf =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{qrf/qrf_min_samples_leaf_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{qrf/qrf_min_samples_leaf_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+  \end{subfigure}
+  \caption{QRF ablation over the minimum number of samples per leaf,
+  $\mathrm{min\_samples\_leaf} \in \{2, 5, 10, 20, 50\}$, with the other QRF
+  hyperparameters fixed to their stage-1 best values.}
+  \label{fig:abl-qrf-msl}
+\end{figure}
+
+
+% ===================== XGB ablation: number of estimators =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb/xgb_n_estimators_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb/xgb_n_estimators_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+  \end{subfigure}
+  \caption{XGB ablation over number of estimators,
+  $n_{\mathrm{est}} \in \{50, 100, 200, 300, 500\}$, with $\mathrm{max\_depth}$,
+  $\mathrm{learning\_rate}$ and $\mathrm{subsample}$ fixed to their stage-1
+  best values.}
+  \label{fig:abl-xgb-nest}
+\end{figure}
+
+
+% ===================== XGB ablation: max depth =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb/xgb_max_depth_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb/xgb_max_depth_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+  \end{subfigure}
+  \caption{XGB ablation over $\mathrm{max\_depth} \in \{1, 2, 3, 4, 5, 7, 10\}$,
+  with $n_{\mathrm{est}}$, $\mathrm{learning\_rate}$ and $\mathrm{subsample}$
+  fixed to their stage-1 best values.}
+  \label{fig:abl-xgb-md}
+\end{figure}
+
+
+% ===================== XGB-1sub ablation: number of estimators =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb_1sub/xgb-1sub_n_estimators_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb_1sub/xgb-1sub_n_estimators_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+  \end{subfigure}
+  \caption{XGB-1sub ablation over number of estimators, with
+  $\mathrm{subsample} = 1$ (deterministic boosting). Here
+  $\sigma_{\mathrm{opt}} = 0$ by construction; the curve confirms that
+  removing stochastic subsampling removes parameter uncertainty entirely.}
+  \label{fig:abl-xgb1sub-nest}
+\end{figure}
+
+
+% ===================== XGB-1sub ablation: max depth =====================
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb_1sub/xgb-1sub_max_depth_sum_rmse_2026_06_22_12_05_40.png}
+    \caption{Sum of RMSEs}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.48\textwidth}\centering
+    \includegraphics[width=\linewidth]{xgb_1sub/xgb-1sub_max_depth_sigma_opt_2026_06_22_12_05_40.png}
+    \caption{$\sigma_{\mathrm{opt}}$}
+  \end{subfigure}
+  \caption{XGB-1sub ablation over $\mathrm{max\_depth} \in \{1, 2, 3, 4, 5, 7, 10\}$,
+  with $\mathrm{subsample} = 1$ (deterministic boosting). $\sigma_{\mathrm{opt}} = 0$
+  by construction at every depth.}
+  \label{fig:abl-xgb1sub-md}
+\end{figure}

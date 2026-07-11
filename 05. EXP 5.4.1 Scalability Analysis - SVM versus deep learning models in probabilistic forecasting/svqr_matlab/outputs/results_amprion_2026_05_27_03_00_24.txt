@@ -1,0 +1,38 @@
+========== Amprion Quantile SVR — Sliding Test Results ==========
+
+Tuning Workspace Parameters
+--------------------------------------------------
+Tuning Sample Size                    : 1000 points
+Tuning Split                          : 80/20 train/val
+Target Confidence Quantiles           : [0.05, 0.95]
+Minimum Acceptance Target Coverage    : 0.90
+Selection Criterion                   : Min MPIW among PICP >= threshold.
+                                         Fallback: max PICP (tiebreak = min MPIW)
+
+Selected Hyperparameters (From 1k Tuning)
+--------------------------------------------------
+Chosen Window Size : 24
+s Kernel Exponent  : 20 (s = 1.048576e+06)
+C Cost Exponent    : 16 (C = 6.553600e+04)
+Tuning Phase PICP  : 0.907692
+Tuning Phase MPIW  : 14.344453
+
+Stage 2 Protocol: SLIDING test set
+  For each size N: last 1000 = test, first (N-1000) = train+val (90/10).
+  Example: 4k -> 3k train+val + 1k test; 6k -> 5k train+val + 1k test.
+  sigma2_model = 0 (SVM is deterministic).
+
+Performance Summary Across Different Data Sizes
+--------------------------------------------------------------------------------
+Data Size  Train    Val PICP   Val MPIW   Test PICP  Test MPIW  MPIW/PICP    Time (s)  
+--------------------------------------------------------------------------------
+4000       3000     0.781879   20.8801    0.890256   23.3431    26.220657    20.30     
+6000       5000     0.931727   19.4044    0.862564   30.5311    35.395690    75.88     
+8000       7000     0.836676   27.9011    0.860513   23.6453    27.478114    394.03    
+10000      9000     0.890869   31.9342    0.924103   26.8107    29.012635    705.15    
+12000      11000    0.948087   21.2071    0.951795   15.9861    16.795727    6772.19   
+16000      15000    0.898531   14.4862    0.899487   14.5544    16.180734    24774.72  
+--------------------------------------------------------------------------------
+
+Execution completed successfully.
+Timestamp : 27-May-2026 03:00:24

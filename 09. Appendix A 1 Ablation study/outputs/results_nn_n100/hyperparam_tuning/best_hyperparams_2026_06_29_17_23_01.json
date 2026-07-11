@@ -1,0 +1,21 @@
+{
+  "n_train": 100,
+  "n_val": 50,
+  "M": 10,
+  "seed": 2,
+  "best": {
+    "NN": {
+      "config": {
+        "hidden_sizes": [
+          256
+        ],
+        "lr": 0.003,
+        "epochs": 200,
+        "batch_size": 32
+      },
+      "sum_rmse": 0.09023,
+      "rmse_lo": 0.09574,
+      "rmse_hi": 0.08471
+    }
+  }
+}

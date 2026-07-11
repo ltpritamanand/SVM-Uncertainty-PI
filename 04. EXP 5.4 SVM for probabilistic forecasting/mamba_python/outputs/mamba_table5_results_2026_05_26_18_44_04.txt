@@ -1,0 +1,23 @@
+====================================================================================================
+  Mamba SSM — Probabilistic Forecasting  (Table 5 replication)
+====================================================================================================
+
+Target coverage : 1-α = 0.95
+Quantiles       : τ_lower=0.025, τ_upper=0.975
+N runs          : 5
+N epochs (eval) : 50
+Device          : cuda
+
+Dataset                     Win            PICP            MPIW          σ²        #W   Spar%       Time(s)
+-----------------------------------------------------------------------------------------------------------
+Female Births (365x1)        12  0.9358±0.0092  26.9116±0.6764    0.416808    30,017    0.0%     10.7±3.5
+Minimum Temperature (3651x1)   12  0.9527±0.0115  9.6594±0.3011    0.366682    17,057    0.0%     68.2±0.1
+Beer Production (464x1)      12  0.9557±0.0053  108.1096±11.7937  161.347855    30,017    0.0%      9.3±1.3
+
+Notes:
+  • Pipeline matches probab_forecast_Svm.m exactly
+  • Split: first 70% → train+val | last 30% → test
+  • Train/val: first 90%/last 10% of train+val block
+  • Grid selection: PICP≥0.95 → min MPIW; else max PICP
+  • σ² = run-to-run variance of lower+upper predictions
+  • Timestamp: 2026-05-26 18:44:04.678057

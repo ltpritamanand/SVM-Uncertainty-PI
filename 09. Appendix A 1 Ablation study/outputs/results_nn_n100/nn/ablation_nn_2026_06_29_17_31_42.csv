@@ -1,0 +1,8 @@
+sum_rmse_val,sum_rmse_test,interval_score_val,interval_score_test,sigma_opt_val,sigma_opt_test,picp_test,mpiw_test,elapsed_min,family,axis_key,axis_value,axis_label,folder,config_label
+0.1982,0.2067,2.2746,2.1633,0.1251,0.1229,0.9017,1.899,0.34,NN,hidden_sizes_w,16,Hidden nodes (neurons),nn,NN_hidden_sizes_w=16
+0.1568,0.1563,2.0698,2.0619,0.0895,0.0888,0.905,1.836,0.26,NN,hidden_sizes_w,32,Hidden nodes (neurons),nn,NN_hidden_sizes_w=32
+0.144,0.1462,2.0456,2.0402,0.1077,0.1018,0.8967,1.8127,0.54,NN,hidden_sizes_w,64,Hidden nodes (neurons),nn,NN_hidden_sizes_w=64
+0.1428,0.1453,2.1485,2.0062,0.1789,0.1716,0.915,1.8314,0.52,NN,hidden_sizes_w,128,Hidden nodes (neurons),nn,NN_hidden_sizes_w=128
+0.115,0.1174,2.0774,1.9839,0.1777,0.1685,0.9017,1.7941,0.5,NN,hidden_sizes_w,256,Hidden nodes (neurons),nn,NN_hidden_sizes_w=256
+0.1484,0.1506,2.1273,2.0248,0.2775,0.2611,0.89,1.7869,0.36,NN,hidden_sizes_w,512,Hidden nodes (neurons),nn,NN_hidden_sizes_w=512
+0.2667,0.2647,2.2332,2.2084,0.6486,0.6305,0.95,2.1147,0.26,NN,hidden_sizes_w,1024,Hidden nodes (neurons),nn,NN_hidden_sizes_w=1024

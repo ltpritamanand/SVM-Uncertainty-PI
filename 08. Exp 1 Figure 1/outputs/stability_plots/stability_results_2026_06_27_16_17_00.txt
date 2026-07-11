@@ -1,0 +1,19 @@
+Stability results — sinc + Uniform(-1,1) noise
+n_train=50  M=10  seed=2  n_test=600
+========================================================================================
+Method              SumofRMSEs      PICP      MPIW         IS    sigma2_model   sigma_model
+----------------------------------------------------------------------------------------
+NN                       0.105     0.878     1.749      2.007          0.0256        0.1599
+QRF                      0.230     0.908     1.978      2.250          0.0172        0.1312
+SVM                      0.136     0.840     1.671      2.115          0.0000        0.0000
+XGB                      0.254     0.770     1.639      2.556          0.0158        0.1258
+GPR                      0.150     0.892     1.885      2.075          0.0000        0.0000
+NGB                      0.203     0.888     1.921      2.246          0.0000        0.0000
+========================================================================================
+
+sigma2_model: mean((f_q^j - mean_q)^2) over runs x test points, summed over lo+hi heads.
+sigma_model:  sqrt(sigma2_model) — in original y units.
+SumofRMSEs:  (RMSE(mean_lo, true_lo) + RMSE(mean_hi, true_hi)) / 2 on the 600 test points (matches exp8 protocol).
+PICP: fraction of test points covered by the mean PI.
+MPIW: mean width of the mean PI on the test set.
+IS: Interval Score — proper scoring rule (lower is better). IS = (u-l) + (2/alpha)*max(l-y,0) + (2/alpha)*max(y-u,0).

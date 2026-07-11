@@ -1,0 +1,51 @@
+Column legend for sweep_<MODEL>.csv
+====================================
+One row per training size N. The test set is the SAME 500 points across
+every row, so sigma_* values are directly comparable across N and across models.
+
+Per-N summary columns
+  model          Model name (ANN / QRF / SVM / XGB / GPR).
+  n_train        Training points per data seed.
+  n_test         Fixed test-set size.
+  sum_rmse       (RMSE(mean_lo, true_lo) + RMSE(mean_hi, true_hi)) / 2,
+                 where true_lo/true_hi are the known optimal PI bounds
+                 for sinc + Uniform(-1,1).  Matches the runnable_experiments
+                 definition.
+  picp           Coverage of the mean PI on test set (target = Q_UPPER - Q_LOWER = 0.90).
+  mpiw           Mean width of the mean PI on the test set.
+  interval_score Interval Score — proper scoring rule for PIs.
+                 IS = (u-l) + (2/alpha)*max(l-y,0) + (2/alpha)*max(y-u,0)
+                 where alpha = 1 - (Q_UPPER - Q_LOWER) = 0.10.
+                 Lower is better. Jointly evaluates calibration and sharpness.
+  sigma_opt      sqrt( E_d [ Var_i [ f ] ] ) — init noise (sd-scale).
+                 SVM and GPR are deterministic -> sigma_opt = 0.
+  sigma_in       sqrt( Var_d [ E_i [ f ] ] ) — data noise (sd-scale).
+  sigma2_model   sigma_opt^2 + sigma_in^2 — total predictive variance.
+  sigma_model    sqrt(sigma2_model) — total predictive sd.
+  elapsed_min    Wall-clock minutes for this N's D x I grid.
+
+Per-run CSV columns (sweep_<MODEL>_runs.csv)
+  model, n_train, data_seed, init_seed, picp, mpiw, sum_rmse, interval_score, time_s
+
+Model-specific notes (hyperparameters fixed across all D x I x N runs).
+All values come from exp8 stage-1 val-set tuning (best_hyperparams_2026_06_22_11_58_38.json).
+----------------------------------------------------------------------
+  ANN  : 1 hidden layer (512 ReLU), two pinball outputs (lo, hi), AdamW,
+         100 epochs, batch=32, lr=3e-3.  Init seed = torch.manual_seed().
+  QRF  : RandomForestRegressor, n_estimators=30, min_samples_leaf=5,
+         max_features='sqrt'.  Init seed = random_state (no outer bootstrap;
+         variance comes from RF's internal bagging + feature randomness).
+         Quantiles from leaf distributions.
+  SVM  : SVQR QP (port of epsilon_quantilesvr2.m), RBF kernel gamma=2^-0.5,
+         C=2^3.5, eps=0, bias=0. Deterministic -> I=1, sigma_opt=0.
+  XGB  : XGBRegressor reg:quantileerror, n_estimators=200, max_depth=2,
+         lr=0.05, subsample=0.8, colsample_bytree=0.8, min_child_weight=3,
+         reg_lambda=2.0. Init seed = random_state (stochastic boosting only —
+         same training data across runs).
+  GPR  : RBF length_scale=0.707, alpha=0.5 (noise variance in
+         scaled-y units), no kernel optimisation. PI = mu ± z*sqrt(std_f^2 + alpha).
+         Deterministic -> I=1, sigma_opt=0.
+  NGB  : NGBoost with Normal distribution, n_estimators=200, lr=0.01,
+         max_depth=2, min_samples_leaf=10. minibatch_frac=1.0 -> fully
+         deterministic given fixed data -> I=1, sigma_opt=0.
+         PI from Normal.ppf at Q_LOWER / Q_UPPER.

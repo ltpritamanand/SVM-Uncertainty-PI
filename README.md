@@ -3,25 +3,14 @@
 Companion code for the paper submitted to TMLR.
 
 ## Overview
+ 
+Prediction intervals (PIs) produced by  neural networks, random forests, gradient-boosted trees, deep sequence models vary across retraining runs. Differences in random seed and initialization yield different intervals from the same model on the same data. This run-to-run instability is rarely reported alongside coverage and width, despite directly bearing on the reliability of any single reported interval.
+ 
+This paper argues that **Support Vector Machine–based quantile regression produces the same prediction interval on every retraining run**  in contrast to NN, QRF, XGB, LSTM, GRU, TCN, and Mamba-style models, it exhibits zero run-to-run variance, while matching or exceeding these stochastic baselines on coverage (PICP) and interval width (MPIW), typically at substantially lower computational cost.
 
-Prediction intervals (PIs) from stochastic learners — neural networks, random forests, gradient-boosted trees, deep sequence models, even zero-shot forecasting foundation models — change every time you retrain them. Different random seeds, different initializations, different intervals. That run-to-run instability is rarely reported alongside coverage and width, even though it directly affects how much a practitioner can trust a single reported interval.
 
-This paper argues that **Support Vector Machine–based quantile regression (SVQR) and its linear-programming variant (LPSVM) solve a convex, deterministic optimization problem** — so, unlike NN/QRF/XGB/LSTM/GRU/TCN/Mamba-style models, they produce the *same* prediction interval every time, with zero run-to-run variance, while matching or beating those stochastic baselines on coverage (PICP) and interval width (MPIW), typically at a fraction of the compute cost.
+The repository is organized as follows : 
 
-The repo reproduces every figure and table in the paper across UCI regression benchmarks, three univariate time-series datasets, a large-scale electricity load dataset (Amprion), a distribution-shift setting, and a zero-shot foundation model baseline (Amazon Chronos).
-
-## Core idea: the σ_opt / σ_in decomposition
-
-The paper's central diagnostic, computed throughout the codebase, splits total prediction variance into two sources:
-
-- **σ_opt** — variance caused by the *optimization process* (different seeds/inits of the same stochastic model yield different intervals). SVQR, LPSVM, and GPR solve convex/closed-form problems, so **σ_opt = 0 by construction**. NN, QRF, XGB, LSTM, GRU, TCN, Mamba, and Chronos all have σ_opt > 0.
-- **σ_in** — variance attributable to the input data itself, independent of the model's optimization.
-
-Alongside this, every experiment reports:
-- **PICP** — Prediction Interval Coverage Probability (does the interval contain the true value at the target rate?)
-- **MPIW** — Mean Prediction Interval Width (how tight is the interval?)
-
-The paper's recurring result: **SVM-based quantile regressors hit target coverage with competitive or tighter intervals at σ_opt = 0**, i.e. the same (or better) statistical performance with zero instability and, in most settings, 1–2 orders of magnitude less training time.
 
 ## Structure
 
@@ -59,11 +48,6 @@ final_github/
 | `09.` | Appendix A.1 | Ablation over model capacity (NN hidden width, QRF n_estimators/max_features/min_samples_leaf, XGB n_estimators/max_depth) — shows instability isn't resolved by tuning capacity alone |
 | `10.` | Appendix A.2 | Test-set-size sensitivity sweep (100 → 600 samples) — confirms the σ_opt/σ_in decomposition and RMSE results aren't an artifact of test-split size |
 
-## How the pieces fit together
-
-1. **Figure 1** (`08.`) establishes the qualitative claim first: overlay M = 10 independently trained models and visually show which ones agree with themselves.
-2. **Sections 5.1–5.4** (`01.`–`07.`) build the quantitative case with increasing difficulty: static UCI regression → feature selection → conformal prediction → univariate time series → large-scale forecasting → distribution shift → zero-shot foundation models.
-3. **Appendix A** (`09.`, `10.`) stress-tests robustness — does the result hold across model sizes and test-set sizes, or is it an artifact of a particular configuration?
 
 ## Dependencies
 
@@ -77,9 +61,4 @@ MATLAB experiments require MATLAB R2021b+ with the Optimization Toolbox (`quadpr
 
 - Each subfolder contains its own README with detailed run instructions, key hyperparameters, and figure/table references back to the paper.
 - All datasets are bundled in `shared/datasets/` (and, where relevant, duplicated locally within a section's folder).
-- Seeds are fixed and documented in each script; stochastic models (NN, QRF, XGB, LSTM, GRU, TCN, Mamba, Chronos) are run across multiple seeds/passes specifically to measure σ_opt — this is intentional, not a reproducibility gap.
-- Where a script depends on output from an earlier stage (e.g. Appendix A.2 requires Appendix A.1's tuned hyperparameters, or Figure 1's model implementations are reused by Appendix A.1), this is called out explicitly in that folder's README.
 
-## Citation
-
-If you use this code, please cite the paper (TMLR submission). Citation details will be added upon publication.

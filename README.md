@@ -1,4 +1,4 @@
-# SVMs: A More Certain Estimate of Uncertainty — Code Repository
+# Support Vector Machines (SVMs) : A More Certain Estimate of Uncertainty 
 
 Companion code for the paper submitted to TMLR.
 

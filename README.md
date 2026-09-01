@@ -3,10 +3,9 @@
 Companion code for the paper submitted to TMLR.
 
 ## Overview
- 
-Prediction intervals (PIs) produced by  neural networks, random forests, gradient-boosted trees, deep sequence models vary across retraining runs. Differences in random seed and initialization yield different intervals from the same model on the same data. This run-to-run instability is rarely reported alongside coverage and width, despite directly bearing on the reliability of any single reported interval.
- 
-This paper argues that **Support Vector Machine–based quantile regression produces the same prediction interval on every retraining run**  in contrast to NN, QRF, XGB, LSTM, GRU, TCN, and Mamba-style models, it exhibits zero run-to-run variance, while matching or exceeding these stochastic baselines on coverage (PICP) and interval width (MPIW), typically at substantially lower computational cost.
+The main contributions of this paper center on
+establishing distinctive and compelling properties of SVM models that strongly support their promotion for
+UQ regression tasks, especially under small-sample setting
 
 
 The repository is organized as follows : 
